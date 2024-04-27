@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('weather_data', function (Blueprint $table) {
+        /*Schema::create('weather_data', function (Blueprint $table) {
             $table->id();
             $table->integer('temperature');
             $table->integer('humidity');
-            $table->string('temperature');
-            $table->decimal('wind_speed');
-
+            $table->decimal('wind_speed', 8, 2);
+            $table->string('condition');
+            $table->foreignId('created_by')->constrained('users');
+            $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
-            $table->foreignId('weather_source_id')->constrained('weather_source');
+            $table->foreignId('weather_source_id')->constrained('weather_sources');
         });
+        */
     }
 
     /**

@@ -38,18 +38,22 @@ export default function Login({ status, canResetPassword }) {
                 {status}
               </div>
             )}
-            <div className="mb-4">
+            <div>
               <img
                 src="https://i.pinimg.com/736x/40/c1/a2/40c1a21f3aabc0f6626bce59cff2ca5e.jpg"
                 alt="https://ncas.ac.uk/app/uploads/2020/05/Climate-Weather-Blue-Clouds-1280px.jpg"
                 className="w-full h-40 object-cover"
               />
             </div>
+
             <form
               onSubmit={submit}
               className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
             >
-              <div className="mt-4">
+              <div className="max-w-lg mx-auto sm:px-2 lg:px-4  text-center font-extrabold">
+                <h3 className="text-white text-4xl mb-4">Login</h3>
+              </div>
+              <div>
                 <InputLabel htmlFor="email" value="Email" />
 
                 <TextInput

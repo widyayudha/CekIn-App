@@ -2,17 +2,20 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link } from "@inertiajs/react";
 import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "./constant";
+import DatePicker from "@/Components/DatePicker";
+import TimePicker from "@/Components/TimePicker";
 
-export default function Welcome({ auth, weatherDashboard,
+export default function Welcome({ auth,
+  weatherDashboard,
   weatherIcon,
-  city }) {
+  randomCity, selectedImage}) {
   return (
     <GuestLayout user={auth.user}>
       <Head title="Dashboard Guest" />
       <img
-        src="https://ncas.ac.uk/app/uploads/2020/05/Climate-Weather-Blue-Clouds-1280px.jpg"
+        src="https://www.wallpaperflare.com/static/369/332/935/anime-girls-clear-blue-sky-wallpaper.jpg"
         alt=""
-        className="w-full h-48 object-cover"
+        className="w-full h-72 object-cover"
       />
       <div className="py-8">
         <div className="max-w-lg mx-auto sm:px-2 lg:px-4  text-center">
@@ -21,21 +24,23 @@ export default function Welcome({ auth, weatherDashboard,
           </h3>
         </div>
       </div>
-      <div className="max-w-2xl mx-auto sm:px-6 lg:px-8 mt-2">
+      <div className="max-w-2xl mx-auto sm:px-6 lg:px-8 mt-2 ">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <img src={selectedImage} className="w-full h-36 object-cover"/>
             <div className="p-6 text-gray-900 dark:text-gray-100">
-              <h3 className="text-gray-200 text-xl font-semibold">
-                {city}
+              <h3 className="text-gray-200 text-6xl font-extrabold">
+                {randomCity}
               </h3>
-              <h3 className="text-gray-200 text-xl font-semibold justify-end">
-                Saturday, 4 April 2024 | Local Time: 12.58
+              <h3>
+                <DatePicker/>
               </h3>
+              <TimePicker/>
             </div>
           </div>
         </div>
-      <div className="py-2">
-        <div className="max-w-2xl mx-auto sm:px-6 lg:px-8 grid grid-cols-3 gap-2">
-          <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div className="py-2">
+        <div className="max-w-2xl mx-auto sm:px-6 lg:px-8 grid grid-cols-3 gap-2 opacity-90 mb-20">
+          <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
             <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
               <h3 className="text-amber-500 text-2xl font-semibold">
                 Temperature

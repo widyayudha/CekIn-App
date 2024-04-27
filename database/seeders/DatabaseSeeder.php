@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\WeatherData;
+use App\Models\WeatherSources;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,9 +26,16 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => time()
         ]);
 
+        WeatherSources::factory(3)->create();
+
         Project::factory()
         ->count(30)
         ->hasTasks(30)
+        ->create();
+
+        WeatherData::factory()
+        ->count(30)
+        ->hasWeatherSource(30)
         ->create();
     }
 }

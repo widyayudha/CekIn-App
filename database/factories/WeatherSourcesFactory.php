@@ -17,7 +17,13 @@ class WeatherSourcesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=> fake()->sentence(),
+            'api_key' => fake()
+                ->randomElement(['openweather','accuweather','bmkg']),
+            'created_by' => 1,
+            'updated_by' => 1,
+            'created_at' => time(),
+            'updated_at' => time()
         ];
     }
 }
