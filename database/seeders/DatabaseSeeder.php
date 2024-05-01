@@ -26,16 +26,9 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => time()
         ]);
 
-        WeatherSources::factory(3)->create();
-
-        Project::factory()
-        ->count(30)
-        ->hasTasks(30)
-        ->create();
-
-        WeatherData::factory()
-        ->count(30)
-        ->hasWeatherSource(30)
+        WeatherSources::factory()
+        ->count(3)
+        ->hasWeatherData(30)
         ->create();
     }
 }

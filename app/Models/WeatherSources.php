@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class WeatherSources extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'status', 'created_by', 'updated_by'];
+
+
+    public function weatherData() {
+        return $this->hasMany(WeatherData::class);
+    }
+
+    public function createdBy() {
+        return $this->belongsTo(User::class,'created_by');
+    }
+
+    public function updatedBy() {
+        return $this->belongsTo(User::class,'updated_by');
+    }
 }
