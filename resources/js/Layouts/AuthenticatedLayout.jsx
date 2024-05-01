@@ -27,6 +27,9 @@ export default function AuthenticatedLayout({ user, header, children }) {
                                 <NavLink href={route('project.index')} active={route().current('project.index')}>
                                     My Weather
                                 </NavLink>
+                                <NavLink href={route('task.index')} active={route().current('task.index')}>
+                                    Weather Alerts
+                                </NavLink>
                             </div>
                         </div>
 

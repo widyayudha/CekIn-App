@@ -27,7 +27,7 @@ export default function Edit({ auth, project }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Edit "{project.name}"
+            Edit "{project.name}" Data
           </h2>
         </div>
       }
@@ -53,7 +53,7 @@ export default function Edit({ auth, project }) {
             >
 
               <div className="mt-4">
-                <InputLabel htmlFor="project_name" value="Weather Name" />
+                <InputLabel htmlFor="project_name" value="Weather Data Name" />
                 <TextInput
                   id="project_name"
                   type="text"

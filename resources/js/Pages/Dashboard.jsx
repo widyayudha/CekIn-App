@@ -68,10 +68,16 @@ export default function Dashboard({
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
               <h3 className="text-red-500 text-2xl font-semibold">Condition</h3>
+              <div>
               <img src={weatherIcon} className="w-16 mx-auto mt-3"/>
-              <p className="text-4xl mt-2 font-extrabold">
+              </div>
+              <div><p className="text-4xl mt-2 font-extrabold">
                 {weatherDashboard.weather[0].main}
               </p>
+              </div>
+            <div className="capitalize">
+            {weatherDashboard.weather[0].description}
+            </div>
             </div>
           </div>
         </div>
