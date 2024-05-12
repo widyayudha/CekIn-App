@@ -4,6 +4,7 @@ import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "./constant";
 import TimePicker from "@/Components/TimePicker";
 import DatePicker from "@/Components/DatePicker";
 import SearchBar from "@/Components/SearchBar";
+import Footer from "@/Layouts/Footer";
 
 export default function Dashboard({
   auth,

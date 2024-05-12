@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('weather_data', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('temperature');
-            $table->integer('humidity');
-            $table->decimal('wind_speed', 8, 2);
-            $table->string('condition');
+            $table->string('city_name');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');

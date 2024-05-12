@@ -18,11 +18,7 @@ class WeatherDataFactory extends Factory
     {
         return [
             'name'=> fake()->sentence(),
-            'temperature' => fake()->numberBetween(0,40),
-            'humidity' => fake()->numberBetween(0,10),
-            'wind_speed' => fake()->randomFloat(1,1,20),
-            'condition' =>fake()
-                ->randomElement(['rain','cloud','clear']),
+            'city_name'=> fake()->sentence(),
             'user_id'=>1,
             'created_by' => 1,
             'updated_by' => 1,

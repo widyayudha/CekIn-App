@@ -5,9 +5,8 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 import Footer from "@/Components/Footer";
-import GuestNav from "@/Components/GuestNav";
 
-export default function Guest({ header, children }) {
+export default function GuestNav({ header, children }) {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <nav className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
@@ -59,7 +58,6 @@ export default function Guest({ header, children }) {
           </div>
         </header>
       )}
-      <main>{children}</main>
     </div>
   );
 }

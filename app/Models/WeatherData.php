@@ -11,10 +11,7 @@ class WeatherData extends Model
 
     protected $fillable = [
         'name',
-        'temperature',
-        'humidity',
-        'wind_speed',
-        'condition',
+        'city_name',
         'user_id',
         'created_by',
         'updated_by',
