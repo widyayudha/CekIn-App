@@ -2,8 +2,10 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "start": "npx http-server ./dist",
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
