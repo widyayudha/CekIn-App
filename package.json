@@ -2,10 +2,11 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "start": "npx http-server ./dist",
+        "start": "concurrently \"npm run client\" \"npm run server\"",
+        "server": "php artisan serve",
+        "client": "npm run dev",
         "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
+        "build": "vite build"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
