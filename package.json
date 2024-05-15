@@ -2,6 +2,9 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "start": "concurrently \"npm run client\" \"npm run server\"",
+        "server": "php artisan serve",
+        "client": "npm run dev",
         "dev": "vite",
         "build": "vite build"
     },
