@@ -116,7 +116,7 @@ class ProjectController extends Controller
         }
         $project->update($data);
         return to_route('project.index')
-            ->with('success',"Weather \"$project->name\"was Updated");
+            ->with('success',"Project \"$project->name\"was Updated");
     }
 
     /**
@@ -129,6 +129,6 @@ class ProjectController extends Controller
         if ($project->image_path) {
             Storage::disk('public')->deleteDirectory(dirname($project->image_path));
         }
-        return to_route('project.index')->with('success', "Weather \"$name\" was Deleted");
+        return to_route('project.index')->with('success', "Project \"$name\" was Deleted");
     }
 }

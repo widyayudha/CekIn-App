@@ -1,17 +1,10 @@
 import Pagination from "@/Components/Pagination";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
-import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "../constant";
 import TextInput from "@/Components/TextInput";
-import SelectInput from "@/Components/SelectInput";
-import {
-  ChevronUpIcon,
-  ChevronUpDownIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/16/solid";
 import TableHeading from "@/Components/TableHeading";
 
-export default function Index({ auth, projects, queryParams = null, success }) {
+export default function Index({ auth, weathers, queryParams = null, success }) {
   queryParams = queryParams || {};
   const searchFieldChanged = (name, value) => {
     if (value) {
@@ -20,7 +13,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       delete queryParams[name];
     }
 
-    router.get(route("project.index"), queryParams);
+    router.get(route("weather.index"), queryParams);
   };
 
   const onKeyPress = (name, e) => {
@@ -41,14 +34,14 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       queryParams.sort_direction = "asc";
     }
 
-    router.get(route("project.index"), queryParams);
+    router.get(route("weather.index"), queryParams);
   };
 
-  const deleteProject = (project) => {
-    if (!window.confirm('Are you sure want to delete the project?')) {
+  const deleteWeatherData = (weather) => {
+    if (!window.confirm('Are you sure want to delete the weather data?')) {
       return;
     }
-    router.delete(route('project.destroy', project.id))
+    router.delete(route('weather.destroy', weather.id))
   }
 
   return (
@@ -57,10 +50,10 @@ export default function Index({ auth, projects, queryParams = null, success }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Projects
+            My Weather
           </h2>
           <Link
-            href={route("project.create")}
+            href={route("weather.create")}
             className="bg-emerald-500 py-1 px-3 text-white rounded shadow transition-all hover:bg-emerald-600"
           >
             Add new
@@ -68,7 +61,8 @@ export default function Index({ auth, projects, queryParams = null, success }) {
         </div>
       }
     >
-      <Head title="Projects" />
+      <Head title="My Weather" />
+
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           {success && (
@@ -90,22 +84,32 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       >
                         ID
                       </TableHeading>
-                      <th className="px-3 py-3">Image</th>
+                      <th>
+                        <div className="px-3 py-3 text-left">Image</div>
+                      </th>
                       <TableHeading
                         name="name"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChanged}
                       >
-                        Name
+                        Weather Name
                       </TableHeading>
                       <TableHeading
-                        name="status"
+                        name="city_name"
                         sort_field={queryParams.sort_field}
                         sort_direction={queryParams.sort_direction}
                         sortChanged={sortChanged}
                       >
-                        Status
+                        City Name
+                      </TableHeading>
+                      <TableHeading
+                        name="temperature"
+                        sort_field={queryParams.sort_field}
+                        sort_direction={queryParams.sort_direction}
+                        sortChanged={sortChanged}
+                      >
+                        Temperature
                       </TableHeading>
                       <TableHeading
                         name="created_at"
@@ -115,21 +119,8 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                       >
                         Create Date
                       </TableHeading>
-                      <TableHeading
-                        name="due_date"
-                        sort_field={queryParams.sort_field}
-                        sort_direction={queryParams.sort_direction}
-                        sortChanged={sortChanged}
-                      >
-                        Due Date
-                      </TableHeading>
                       <th>
-                        <div className="px-3 py-3 flex items-center justify-between gap-1">
-                          Created By
-                        </div>
-                      </th>
-                      <th>
-                        <div className="px-3 py-3 text-right">Actions</div>
+                        <div className="px-3 py-3 text-center">Actions</div>
                       </th>
                     </tr>
                   </thead>
@@ -141,7 +132,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         <TextInput
                           className="w-full"
                           defaultValue={queryParams.name}
-                          placeholder="Project Name"
+                          placeholder="Weather Name"
                           onBlur={(e) =>
                             searchFieldChanged("name", e.target.value)
                           }
@@ -149,71 +140,59 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                         />
                       </th>
                       <th className="px-3 py-3">
-                        <SelectInput
+                        <TextInput
                           className="w-full"
-                          defaultValue={queryParams.status}
-                          onChange={(e) =>
-                            searchFieldChanged("status", e.target.value)
+                          defaultValue={queryParams.city_name}
+                          placeholder="City Name"
+                          onBlur={(e) =>
+                            searchFieldChanged("city_name", e.target.value)
                           }
-                        >
-                          <option value="">Select Status</option>
-                          <option value="pending">Pending</option>
-                          <option value="in_progress">In Progress</option>
-                          <option value="completed">Completed</option>
-                        </SelectInput>
+                          onKeyPress={(e) => onKeyPress("city_name", e)}
+                        />
                       </th>
                       <th className="px-3 py-3"></th>
                       <th className="px-3 py-3"></th>
                       <th className="px-3 py-3"></th>
-                      <th className="px-3 py-3 text-right"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {projects.data.map((project) => (
+                    {weathers.data.map((weather) => (
                       <tr
                         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                        key={project.id}
+                        key={weather.id}
                       >
-                        <td className="px-3 py-2">{project.id}</td>
+                        <td className="px-3 py-2">{weather.id}</td>
                         <td className="px-3 py-2">
                           <img
-                            src={project.image_path}
+                            src={weather.image_path}
                             style={{ width: 60 }}
                             alt=""
                           />
                         </td>
-                        <th className="px-3 py-2 text-gray-100 text-nowrap hover:underline">
-                          <Link href={route("project.show", project.id)}>
-                            {project.name}
+                        <th className="px-3 py-2 text-gray-100 hover:underline">
+                          <Link href={route("weather.show", weather.id)}>
+                            {weather.name}
                           </Link>
                         </th>
-                        <td className="px-3 py-2">
-                          <span
-                            className={
-                              "px-2 py-1 rounded text-white " +
-                              PROJECT_STATUS_CLASS_MAP[project.status]
-                            }
-                          >
-                            {PROJECT_STATUS_TEXT_MAP[project.status]}
-                          </span>
-                        </td>
+                        <th className="px-3 py-2 text-gray-100">
+                            {weather.city_name}
+                        </th>
+                        <th className="px-3 py-2 text-gray-100">
+                          {weather.temperature ? `${Math.round(weather.temperature)}°C` : 'N/A'}
+                        </th>
                         <td className="px-3 py-2 text-nowrap">
-                          {project.created_at}
+                          {weather.created_at}
                         </td>
-                        <td className="px-3 py-2 text-nowrap">
-                          {project.due_date}
-                        </td>
-                        <td className="px-3 py-2">{project.createdBy.name}</td>
-                        <td className="px-3 py-2 text-nowrap">
+                        <td className="px-2 py-4 text-nowrap justify-end">
                           <Link
-                            href={route("project.edit", project.id)}
+                            href={route("weather.edit", weather.id)}
                             className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1"
                           >
                             Edit
                           </Link>
                           <button
-                            onClick={(e) => deleteProject(project)}
-                            href={route("project.destroy", project.id)}
+                            onClick={(e) => deleteWeatherData(weather)}
+                            href={route("weather.destroy", weather.id)}
                             className="font-medium text-red-600 dark:text-red-500 hover:underline mx-1"
                           >
                             Delete
@@ -224,7 +203,7 @@ export default function Index({ auth, projects, queryParams = null, success }) {
                   </tbody>
                 </table>
               </div>
-              <Pagination links={projects.meta.links} />
+              <Pagination links={weathers.meta.links} />
             </div>
           </div>
         </div>

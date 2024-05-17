@@ -11,15 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('weather_sources', function (Blueprint $table) {
+        Schema::create('weather', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('api_key');
+            $table->string('city_name');
+            $table->string('image_path')->nullable();
+            $table->string('condition')->nullable();
+            $table->longText('description')->nullable();
+            $table->float('temperature')->nullable();
+            $table->integer('pressure')->nullable();
+            $table->integer('humidity')->nullable();
+            $table->float('wind_speed')->nullable();
+            $table->foreignId('assigned_user_id')->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -27,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('weather_sources');
+        Schema::dropIfExists('weather');
     }
 };

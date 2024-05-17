@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('city_name');
-            $table->foreignId('user_id')->constrained('users');
+            $table->float('temperature');
+            $table->float('wind_speed');
+            $table->float('humidity');
+            $table->string('condition');
+            $table->string('description');
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');
-            $table->foreignId('weather_sources_id')->constrained('weather_sources');
             $table->timestamps();
 
         });

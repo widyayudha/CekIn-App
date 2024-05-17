@@ -1,11 +1,6 @@
-import { useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
-import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
-import Footer from "@/Components/Footer";
-import GuestNav from "@/Components/GuestNav";
 
 export default function Guest({ header, children }) {
   return (

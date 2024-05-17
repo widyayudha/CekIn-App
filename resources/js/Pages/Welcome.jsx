@@ -1,7 +1,5 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link } from "@inertiajs/react";
-import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "./constant";
+import { Head } from "@inertiajs/react";
 import DatePicker from "@/Components/DatePicker";
 import TimePicker from "@/Components/TimePicker";
 
