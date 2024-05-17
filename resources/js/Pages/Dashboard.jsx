@@ -28,7 +28,7 @@ export default function Dashboard({
           <img src={selectedImage} className="w-full h-36 object-cover" />
           <div className="p-6 text-gray-900 dark:text-gray-100">
             <h3 className="text-gray-200 text-6xl font-extrabold">
-              {randomCity}
+              {weatherDashboard.name}
             </h3>
             <h3>
               <DatePicker />
