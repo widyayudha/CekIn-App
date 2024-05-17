@@ -11,23 +11,15 @@ class WeatherData extends Model
 
     protected $fillable = [
         'name',
+        'city_name',
         'temperature',
-        'humidity',
         'wind_speed',
+        'humidity',
         'condition',
-        'user_id',
+        'description',
         'created_by',
         'updated_by',
-        'weather_source_id'
     ];
-
-    public function weatherSources() {
-        return $this->belongsTo(WeatherSources::class);
-    }
-
-    public function assignedUser() {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
     public function createdBy() {
         return $this->belongsTo(User::class, 'created_by');

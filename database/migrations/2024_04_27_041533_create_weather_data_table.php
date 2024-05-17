@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('weather_data', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('temperature');
-            $table->integer('humidity');
-            $table->decimal('wind_speed', 8, 2);
+            $table->string('city_name');
+            $table->float('temperature');
+            $table->float('wind_speed');
+            $table->float('humidity');
             $table->string('condition');
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('description');
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('updated_by')->constrained('users');
-            $table->foreignId('weather_sources_id')->constrained('weather_sources');
             $table->timestamps();
 
         });
