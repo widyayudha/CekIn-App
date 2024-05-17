@@ -2,6 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "prestart": "php artisan migrate",
         "start": "concurrently \"npm run client\" \"npm run server\"",
         "server": "php artisan serve",
         "client": "npm run dev",
