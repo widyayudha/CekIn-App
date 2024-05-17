@@ -20,10 +20,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
     Route::resource('weather', WeatherController::class);
-    Route::resource('project', ProjectController::class);
-    Route::get('/task/my-tasks', [TaskController::class, 'myTasks'])
-        ->name('task.myTasks');
-    Route::resource('task', TaskController::class);
     Route::resource('user', UserController::class);
     Route::get('/about', function () {
         return Inertia::render('About');
